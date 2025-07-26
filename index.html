@@ -2,97 +2,148 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Atividade Extensionista 3 - Diogo Henrique dos Santos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monitor de Clima - Projeto de Extensão | Diogo H. dos Santos</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      background: #fff; /* fundo branco */
-      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fdfdfd;
+      color: #2c3e50;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin: 0;
       text-align: center;
     }
-    h1, h2, h3 {
-      color: #00539C;
+
+    main {
+      max-width: 820px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    h2 {
+      text-align: center;
+      color: #004080;
+      margin-bottom: 0.2rem;
+    }
+
+    .info {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .info p {
+      line-height: 1.6;
+      max-width: 620px;
+      margin: 0.8rem auto;
+    }
+
+    h3 {
+      text-align: center;
+      color: #006699;
       margin-bottom: 0.5rem;
     }
-    p {
-      text-align: justify;
-      line-height: 1.5;
-      margin-bottom: 1rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+
     .iframe-container {
       position: relative;
       width: 100%;
-      max-width: 600px;
-      margin: 1rem auto 0 auto;
+      max-width: 520px;
+      margin: 1.5rem auto;
       height: 0;
-      padding-bottom: 43.3%;
+      padding-bottom: 30%;
+      border-radius: 10px;
+      background-color: #eaeaea;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
     }
+
     .iframe-container iframe {
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       border: none;
-      border-radius: 6px;
-      background: transparent;
+      border-radius: 10px;
     }
+
     .updated-date {
-      font-size: 0.9rem;
-      color: #666;
-      margin-top: 0.25rem;
-      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      color: #555;
       font-style: italic;
+      text-align: center;
+      margin-bottom: 2rem;
     }
   </style>
 </head>
 <body>
-  <h1>Atividade Extensionista 1</h1>
-  <h2>Diogo Henrique dos Santos</h2>
-  <p><strong>RU:</strong> 4172605</p>
+  <header>
+    <h1>Monitor de Clima - Extensão Universitária</h1>
+  </header>
+  <main>
+    <h2>Diogo Henrique dos Santos</h2>
+    <div class="info">
+      <p><strong>RU:</strong> 4172605</p>
 
-  <p>
-    Este site é de autoria do aluno <strong>Diogo Henrique dos Santos</strong> do curso de bacharelado em engenharia elétrica do Centro Universitário UNINTER, polo de Santa Cruz do Sul - RS.
-  </p>
+      <p>
+        Bem-vindo ao painel de acompanhamento climático desenvolvido como parte da Atividade Extensionista 3, do curso de Engenharia Elétrica da UNINTER, polo Santa Cruz do Sul - RS.
+      </p>
 
-  <p>
-    O objetivo do mesmo é coletar informações referentes a temperatura e umidade relativa do ar, durante os períodos determinados pelo professor.
-  </p>
+      <p>
+        Esta página foi criada com o objetivo de coletar e exibir dados reais de temperatura e umidade do ar em tempo real. As informações aqui são atualizadas automaticamente por sensores conectados a uma rede Wi-Fi, utilizando a plataforma ThingSpeak.
+      </p>
+    </div>
 
-  <p>Abaixo, estão os gráficos para acompanhamento dos resultados:</p>
+    <!-- Gráfico de Temperatura -->
+    <section>
+      <h3>Temperatura Atual (°C)</h3>
+      <div class="iframe-container">
+        <iframe 
+          src="https://thingspeak.mathworks.com/channels/3017455/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Temperatura+%28%C2%B0C%29&type=line"
+          title="Gráfico de Temperatura">
+        </iframe>
+      </div>
+      <div id="temp-date" class="updated-date"></div>
+    </section>
 
-  <!-- Gráfico temperatura -->
-  <h3>Temperatura (°C)</h3>
-  <div class="iframe-container">
-    <iframe 
-      src="https://thingspeak.com/channels/3017455/charts/1?bgcolor=%2300000000&color=%23d62020&dynamic=true&duration=7days&type=line" 
-      title="Gráfico de Temperatura" scrolling="no"></iframe>
-  </div>
-  <div id="temp-date" class="updated-date"></div>
-
-  <!-- Gráfico umidade -->
-  <h3>Umidade (%)</h3>
-  <div class="iframe-container">
-    <iframe 
-      src="https://thingspeak.com/channels/3017455/charts/2?bgcolor=%2300000000&color=%230072b3&dynamic=true&duration=7days&type=line" 
-      title="Gráfico de Umidade" scrolling="no"></iframe>
-  </div>
-  <div id="humidity-date" class="updated-date"></div>
+    <!-- Gráfico de Umidade -->
+    <section>
+      <h3>Umidade Relativa (%)</h3>
+      <div class="iframe-container">
+        <iframe 
+          src="https://thingspeak.mathworks.com/channels/3017455/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Umidade+Relativa+do+Ar+%28%25%29&type=line"
+          title="Gráfico de Umidade">
+        </iframe>
+      </div>
+      <div id="humidity-date" class="updated-date"></div>
+    </section>
+  </main>
 
   <script>
-    function formatDate(date) {
-      const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-      return date.toLocaleDateString('pt-BR', options);
+    function formatDateTime(date) {
+      const optionsDate = { day: '2-digit', month: '2-digit', year: 'numeric' };
+      const optionsTime = { hour: '2-digit', minute: '2-digit' };
+      const data = date.toLocaleDateString('pt-BR', optionsDate);
+      const hora = date.toLocaleTimeString('pt-BR', optionsTime);
+      return `Última atualização: ${data} às ${hora}`;
     }
 
-    const hoje = new Date();
-    document.getElementById('temp-date').textContent = `Dados atualizados em: ${formatDate(hoje)}`;
-    document.getElementById('humidity-date').textContent = `Dados atualizados em: ${formatDate(hoje)}`;
+    const agora = new Date();
+    document.getElementById('temp-date').textContent = formatDateTime(agora);
+    document.getElementById('humidity-date').textContent = formatDateTime(agora);
   </script>
 </body>
 </html>
